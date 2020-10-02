@@ -1,0 +1,2 @@
+export const TOGGLE_LIGHT_MODE = "TOGGLE_LIGHT_MODE";
+export const SET_FOOD_DATA = 'SET_FOOD_DATA '
