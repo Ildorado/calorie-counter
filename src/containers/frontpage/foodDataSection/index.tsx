@@ -1,8 +1,12 @@
-import React from "react";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import Divider from "@material-ui/core/Divider";
-import List from "./List";
-const useStyles = makeStyles((theme: Theme) =>
+import React, { useState } from "react";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
+
+import DisplayDataElement from "./displayDataElement";
+import DisplayDataList from "./diplayDataList";
+import { getFocusedFoodDataElement } from "../../../redux/selectors";
+import { useSelector } from "react-redux";
+
+const useStyles = makeStyles(() =>
   createStyles({
     container: {
       display: "flex",
@@ -12,44 +16,17 @@ const useStyles = makeStyles((theme: Theme) =>
       marginTop: "20px",
       overflow: "hidden",
     },
-    h1: {
-      color: theme.palette.text.primary,
-    },
-    delimiter: {
-      height: 3,
-      marginBottom: "20px",
-    },
-    fixedSizeList: {
-      display: "flex",
-      flexGrow: 1,
-    },
-    listItem: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "baseline",
-      justifyContent: "center",
-    },
-    listItemName: {
-      fontSize: "1.5rem",
-    },
-    listItemProperties: {
-      fontSize: "1.25rem",
-    },
-    listContainer: {
-      flexGrow: 1,
-    },
   })
 );
 
 const FoodDataSection = () => {
   const classes = useStyles();
+
+  const focusedFoodDataElement = useSelector(getFocusedFoodDataElement);
+
   return (
     <div className={classes.container}>
-      <h1 className={classes.h1}>Select a Food</h1>
-      <Divider light className={classes.delimiter} />
-      <div className={classes.listContainer}>
-        <List />
-      </div>
+      {focusedFoodDataElement ? <DisplayDataElement /> : <DisplayDataList />}
     </div>
   );
 };

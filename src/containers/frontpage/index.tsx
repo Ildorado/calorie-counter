@@ -1,10 +1,10 @@
 import React from "react";
-import SearchSection from "./searchSection";
+import SearchInputSection from "./searchInputSection";
 import HeaderSection from "./headerSection";
 import FoodSectionData from "./foodDataSection";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { createStyles, makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     container: {
       display: "flex",
@@ -21,7 +21,7 @@ const FrontPage = () => {
   return (
     <div className={classes.container}>
       <HeaderSection />
-      <SearchSection />
+      <SearchInputSection />
       <FoodSectionData />
     </div>
   );

@@ -1,14 +1,14 @@
-import React, { useCallback, useEffect, useReducer, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import _ from "lodash";
-import { useStore } from "../../../hooks";
-import { SET_FOOD_DATA } from "../../../stateManagement/actions";
 import FilledInput from "@material-ui/core/FilledInput";
 import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
 import data from "../../../assets/Food_Display_Table.json";
+import { useDispatch } from "react-redux";
 
+import { setFoodData } from "../../../redux/actions";
 const useStyles = makeStyles({
   container: {
     display: "flex",
@@ -26,34 +26,26 @@ const useStyles = makeStyles({
 const Search = () => {
   const classes = useStyles();
   const [inputValue, setInputValue] = useState("");
-
-  const {
-    state: { foodData },
-    dispatch,
-  } = useStore();
+  const dispatch = useDispatch();
 
   const handleSubmit = useCallback(
     (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      console.log("trying to submit");
       if (inputValue.length !== 0) {
-        dispatch({
-          type: SET_FOOD_DATA,
-          payload: {
-            foodData: _.filter(data, (result) =>
+        dispatch(
+          setFoodData(
+            _.filter(data, (result) =>
               result.Display_Name.toLowerCase().includes(
                 inputValue.toLowerCase()
               )
-            ),
-          },
-        });
+            )
+          )
+        );
       }
       event.preventDefault();
     },
     [dispatch, inputValue]
   );
-  useEffect(() => {
-    console.log("results:", foodData);
-  }, [foodData]);
+
   return (
     <form className={classes.container} noValidate autoComplete="off">
       <FilledInput

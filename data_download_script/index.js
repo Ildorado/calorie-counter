@@ -62,7 +62,7 @@ async function sheetToJson() {
     workbook.Sheets[workbook.SheetNames[0]]
   );
   for (let i = 0; i < food_data_array.length; i++) {
-    food_data_json[food_data_array[i]["Display_Name"]] = food_data_array[i];
+    food_data_json[food_data_array[i]["Food_Code"]] = food_data_array[i];
   }
   fs.writeFile(
     FOOD_DISPLAY_JSON_PATH,

@@ -1,10 +1,13 @@
 import React from "react";
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import { useStore } from "../../hooks";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
 import IconButton from "@material-ui/core/IconButton";
 import { staticColors } from "../../constants/colors";
+import { toggleLightMode } from "../../redux/actions";
+import { getMode } from "../../redux/selectors";
+import { useSelector, useDispatch } from "react-redux";
+
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
@@ -18,7 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
       color: staticColors.white,
     },
 
-    nightModeButton: {
+    lightModeButton: {
       position: "absolute",
       right: "20px",
       color: staticColors.white,
@@ -28,20 +31,17 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Header = () => {
   const classes = useStyles();
-
-  const {
-    state: { mode },
-    dispatch,
-  } = useStore();
+  const mode = useSelector(getMode);
+  const dispatch = useDispatch();
 
   return (
     <header className={classes.container}>
       <h1 className={classes.h1}>Food Calculator</h1>
       <IconButton
-        className={classes.nightModeButton}
+        className={classes.lightModeButton}
         aria-label="mode change"
         onClick={() => {
-          dispatch({ type: "TOGGLE_LIGHT_MODE" });
+          dispatch(toggleLightMode());
         }}
       >
         {mode === "light" ? <Brightness4Icon /> : <Brightness7Icon />}

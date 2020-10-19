@@ -1,11 +1,10 @@
-import React, { useReducer } from "react";
+import React from "react";
 import App from "./App";
-import { initialState } from "./stateManagement/initialState";
-import { Context } from "./stateManagement/context";
-import Reducer from "./stateManagement/reducer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { darkModeColors, lightModeColors } from "./constants/colors";
+import { useSelector } from "react-redux";
+import { getMode } from "./redux/selectors";
 
 const lightTheme = createMuiTheme({
   palette: {
@@ -14,7 +13,6 @@ const lightTheme = createMuiTheme({
     secondary: {
       main: lightModeColors.secondary,
     },
-    // text:{}
   },
 });
 const darkTheme = createMuiTheme({
@@ -28,16 +26,13 @@ const darkTheme = createMuiTheme({
 });
 
 const AppWrapper = () => {
-  const [state, dispatch] = useReducer(Reducer, initialState);
-
+  const mode = useSelector(getMode);
   return (
-    <Context.Provider value={{ state, dispatch }}>
-      <MuiThemeProvider theme={state.mode === "light" ? lightTheme : darkTheme}>
-        <CssBaseline>
-          <App />
-        </CssBaseline>
-      </MuiThemeProvider>
-    </Context.Provider>
+    <MuiThemeProvider theme={mode === "light" ? lightTheme : darkTheme}>
+      <CssBaseline>
+        <App />
+      </CssBaseline>
+    </MuiThemeProvider>
   );
 };
 export default AppWrapper;
