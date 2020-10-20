@@ -38,6 +38,9 @@ const useStyles = makeStyles((theme: Theme) =>
       borderRadius: "10px",
       fontWeight: "bolder",
     },
+    foodElementDataContainer: {
+      display: "flex",
+    },
     amountInput: {
       color: staticColors.white,
     },
@@ -114,7 +117,7 @@ const FoodDataSection = ({ id }: Props) => {
           Food
         </h2>
       </Grid>
-      <Grid item sm={9} xs={12}>
+      <Grid item sm={9} xs={12} className={classes.foodElementDataContainer}>
         <p className={classes.foodElementData}>
           {` ${focusedFoodDataElement.Display_Name}
               ${Number(

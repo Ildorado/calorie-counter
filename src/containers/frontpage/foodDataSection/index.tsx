@@ -14,7 +14,7 @@ const useStyles = makeStyles(() =>
       flexDirection: "column",
       width: "100%",
       marginTop: "20px",
-      overflow: "hidden",
+      overflow: "visible",
     },
   })
 );

@@ -4,7 +4,7 @@ import Divider from "@material-ui/core/Divider";
 
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import { FixedSizeList, ListChildComponentProps } from "react-window";
+import { VariableSizeList, ListChildComponentProps } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
     listContainer: {
       flexGrow: 1,
     },
-    fixedSizeList: {
+    list: {
       display: "flex",
       flexGrow: 1,
     },
@@ -77,6 +77,20 @@ const FoodDataSection = () => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const isExtraSmall = useMediaQuery(theme.breakpoints.down("xs"));
+  const rowHeights = React.useMemo(
+    () =>
+      searchedFoodData.map((elem) => {
+        if (isExtraSmall) {
+          return 90 + (elem.Display_Name.length / 7) * 40;
+        } else {
+          return 80;
+        }
+      }),
+    [isExtraSmall, searchedFoodData]
+  );
+  const getItemSize = React.useCallback((index) => rowHeights[index], [
+    rowHeights,
+  ]);
   const onClickHandler = (id: number) => {
     dispatch(setFocusedFoodData(id));
   };
@@ -87,19 +101,19 @@ const FoodDataSection = () => {
       <div className={classes.listContainer}>
         <AutoSizer>
           {({ height, width }) => (
-            <FixedSizeList
-              height={height}
+            <VariableSizeList
+              height={height < 400 ? 400 : height}
               width={width}
-              itemSize={isExtraSmall ? 140 : 80}
+              itemSize={getItemSize}
               itemCount={searchedFoodData.length}
               itemData={{
                 foodData: searchedFoodData,
                 onClickHandler,
               }}
-              className={classes.fixedSizeList}
+              className={classes.list}
             >
               {RenderRow}
-            </FixedSizeList>
+            </VariableSizeList>
           )}
         </AutoSizer>
       </div>

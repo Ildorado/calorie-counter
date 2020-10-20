@@ -13,17 +13,19 @@ const useStyles = makeStyles((theme: Theme) =>
     container: {
       display: "flex",
       alignItems: "center",
-      justifyContent: "center",
+      flexDirection: "column",
       backgroundColor: theme.palette.secondary.main,
       boxShadow: `0 0 20px 0 ${staticColors.black}`,
     },
     h1: {
+      marginTop: "-40px",
       color: staticColors.white,
     },
 
     lightModeButton: {
-      position: "absolute",
-      right: "20px",
+      position: "relative",
+      top: "10px",
+      alignSelf: "flex-end",
       color: staticColors.white,
     },
   })
@@ -36,7 +38,6 @@ const Header = () => {
 
   return (
     <header className={classes.container}>
-      <h1 className={classes.h1}>Food Calculator</h1>
       <IconButton
         className={classes.lightModeButton}
         aria-label="mode change"
@@ -46,6 +47,7 @@ const Header = () => {
       >
         {mode === "light" ? <Brightness4Icon /> : <Brightness7Icon />}
       </IconButton>
+      <h1 className={classes.h1}>Food Calculator</h1>
     </header>
   );
 };
