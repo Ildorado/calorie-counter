@@ -11,7 +11,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { FoodDataElement } from "../../../../types";
 import { useDispatch, useSelector } from "react-redux";
 import { getSearchedFoodData } from "../../../../redux/selectors";
-import { setFocusedFoodDataElement } from "../../../../redux/actions";
+import { setFocusedFoodData } from "../../../../redux/actions";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     h1: {
@@ -78,7 +78,7 @@ const FoodDataSection = () => {
   const theme = useTheme();
   const isExtraSmall = useMediaQuery(theme.breakpoints.down("xs"));
   const onClickHandler = (id: number) => {
-    dispatch(setFocusedFoodDataElement(id));
+    dispatch(setFocusedFoodData(id));
   };
   return (
     <>

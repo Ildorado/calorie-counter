@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { createStyles, makeStyles } from "@material-ui/core/styles";
 
 import DisplayDataElement from "./displayDataElement";
 import DisplayDataList from "./diplayDataList";
-import { getFocusedFoodDataElement } from "../../../redux/selectors";
+import { getFocusedFoodData } from "../../../redux/selectors";
 import { useSelector } from "react-redux";
 
 const useStyles = makeStyles(() =>
@@ -22,11 +22,15 @@ const useStyles = makeStyles(() =>
 const FoodDataSection = () => {
   const classes = useStyles();
 
-  const focusedFoodDataElement = useSelector(getFocusedFoodDataElement);
+  const focusedFoodData = useSelector(getFocusedFoodData);
 
   return (
     <div className={classes.container}>
-      {focusedFoodDataElement ? <DisplayDataElement /> : <DisplayDataList />}
+      {focusedFoodData ? (
+        <DisplayDataElement id={focusedFoodData.id} />
+      ) : (
+        <DisplayDataList />
+      )}
     </div>
   );
 };

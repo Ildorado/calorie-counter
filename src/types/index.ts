@@ -1,3 +1,5 @@
+import data from "../assets/Food_Display_Table.json";
+
 type LightMode = "light";
 type DarkMode = "dark";
 export type Mode = LightMode | DarkMode;
@@ -31,13 +33,14 @@ export type FoodDataElement = {
   Saturated_Fats: string;
 };
 export type FoodData = FoodDataElement[];
+export type FoodDataKeys = keyof typeof data;
 export type State = {
   mode: ModeReducerState;
   searchedFoodData: SearchFoodDataReducerState;
-  focusedFoodDataElement: FocusedFoodDataReducerState;
+  focusedFoodData: FocusedFoodDataReducerState;
 };
 export type ModeReducerState = Mode;
 export type SearchFoodDataReducerState = FoodData;
 export type FocusedFoodDataReducerState = {
-  id: string;
+  id: FoodDataKeys;
 } | null;

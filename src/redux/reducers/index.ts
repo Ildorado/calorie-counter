@@ -1,6 +1,6 @@
 import modeReducer from "./modeReducer";
 import searchedFoodDataReducer from "./searchedFoodDataReducer";
-import focusedFoodDataReducer from "./focusedFoodDataElementReducer";
+import focusedFoodDataReducer from "./focusedFoodDataReducer";
 import { combineReducers } from "redux";
 const rootReducer = combineReducers({
   mode: modeReducer,

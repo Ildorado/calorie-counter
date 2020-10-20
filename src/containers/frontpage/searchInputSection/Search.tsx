@@ -8,7 +8,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import data from "../../../assets/Food_Display_Table.json";
 import { useDispatch } from "react-redux";
 
-import { setFoodData } from "../../../redux/actions";
+import { setFoodData, unfocusFoodData } from "../../../redux/actions";
 const useStyles = makeStyles({
   container: {
     display: "flex",
@@ -31,6 +31,7 @@ const Search = () => {
   const handleSubmit = useCallback(
     (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       if (inputValue.length !== 0) {
+        dispatch(unfocusFoodData());
         dispatch(
           setFoodData(
             _.filter(data, (result) =>
