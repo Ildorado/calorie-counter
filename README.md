@@ -1,4 +1,4 @@
-SURGE LINK WHERE YOU CAN ACCESS DEPLOYED WEB APPLICATION - cooing-play.surge.sh
+SURGE LINK WHERE YOU CAN ACCESS DEPLOYED WEB APPLICATION - http://cooing-play.surge.sh
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
