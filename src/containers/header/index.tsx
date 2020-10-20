@@ -7,26 +7,25 @@ import { staticColors } from "../../constants/colors";
 import { toggleLightMode } from "../../redux/actions";
 import { getMode } from "../../redux/selectors";
 import { useSelector, useDispatch } from "react-redux";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     container: {
-      display: "flex",
-      alignItems: "center",
-      flexDirection: "column",
       backgroundColor: theme.palette.secondary.main,
       boxShadow: `0 0 20px 0 ${staticColors.black}`,
     },
     h1: {
-      marginTop: "-40px",
       color: staticColors.white,
     },
 
     lightModeButton: {
-      position: "relative",
-      top: "10px",
-      alignSelf: "flex-end",
       color: staticColors.white,
+    },
+    lightModeButtonContainer: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
     },
   })
 );
@@ -38,16 +37,23 @@ const Header = () => {
 
   return (
     <header className={classes.container}>
-      <IconButton
-        className={classes.lightModeButton}
-        aria-label="mode change"
-        onClick={() => {
-          dispatch(toggleLightMode());
-        }}
-      >
-        {mode === "light" ? <Brightness4Icon /> : <Brightness7Icon />}
-      </IconButton>
-      <h1 className={classes.h1}>Food Calculator</h1>
+      <Grid container>
+        <Grid item xs={2}></Grid>
+        <Grid item xs={8}>
+          <h1 className={classes.h1}>Food Calculator</h1>
+        </Grid>
+        <Grid item xs={2} className={classes.lightModeButtonContainer}>
+          <IconButton
+            className={classes.lightModeButton}
+            aria-label="mode change"
+            onClick={() => {
+              dispatch(toggleLightMode());
+            }}
+          >
+            {mode === "light" ? <Brightness4Icon /> : <Brightness7Icon />}
+          </IconButton>
+        </Grid>
+      </Grid>
     </header>
   );
 };
