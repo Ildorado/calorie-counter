@@ -28,8 +28,11 @@ const useStyles = makeStyles((theme: Theme) =>
     foodElementData: {
       whiteSpace: "pre-line",
       marginTop: "1.5em",
-      padding: "0.5em 10px 0 10px",
-
+      padding: "20px 20px 20px 20px",
+      [theme.breakpoints.down("xs")]: {
+        padding: "20px 5px 20px 5px",
+      },
+      width: "max-content",
       backgroundColor: theme.palette.secondary.main,
       color: staticColors.white,
       borderRadius: "10px",
