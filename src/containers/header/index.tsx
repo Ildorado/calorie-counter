@@ -25,7 +25,11 @@ const useStyles = makeStyles((theme: Theme) =>
     lightModeButtonContainer: {
       display: "flex",
       alignItems: "center",
-      justifyContent: "center",
+      justifyContent: "flex-end",
+    },
+    TitleContainer: {
+      display: "flex",
+      justifyContent: " center",
     },
   })
 );
@@ -39,7 +43,7 @@ const Header = () => {
     <header className={classes.container}>
       <Grid container>
         <Grid item xs={2}></Grid>
-        <Grid item xs={8}>
+        <Grid item xs={8} className={classes.TitleContainer}>
           <h1 className={classes.h1}>Food Calculator</h1>
         </Grid>
         <Grid item xs={2} className={classes.lightModeButtonContainer}>
