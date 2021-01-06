@@ -19,7 +19,7 @@
     "@types/react-virtualized-auto-sizer": "^1.0.0",
     "@types/react-window": "^1.8.2",
     "@types/styled-components": "^5.1.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "localforage": "^1.9.0",
     "lodash": "^4.17.20",
     "react": "^16.13.1",
