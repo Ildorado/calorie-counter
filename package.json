@@ -58,6 +58,6 @@
   },
   "devDependencies": {
     "unzipper": "^0.10.11",
-    "xlsx": "^0.16.6"
+    "xlsx": "^0.17.0"
   }
 }
